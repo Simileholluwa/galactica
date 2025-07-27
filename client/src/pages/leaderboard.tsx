@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import galaxyIconPath from "@assets/Icon_White star_1753623198133.png";
 import { LEADERBOARD_DATA, NETWORK_STATS, filterUsersByPeriod, searchUsers, paginateUsers } from "../data/leaderboard-data";
 import type { FilterPeriod } from "@shared/schema";
+import { ThemeToggle } from "../components/theme-toggle";
 
 export default function Leaderboard() {
   const [filter, setFilter] = useState<FilterPeriod>("all");
@@ -42,7 +43,7 @@ export default function Leaderboard() {
   const stats = NETWORK_STATS;
 
   return (
-    <div className="min-h-screen bg-white font-sans overflow-x-hidden">
+    <div className="min-h-screen bg-background text-foreground font-sans overflow-x-hidden transition-colors duration-300">
       <StardustBackground />
 
       {/* Header */}
@@ -61,23 +62,28 @@ export default function Leaderboard() {
                   />
                 </div>
                 <div className="hidden sm:block">
-                  <h1 className="text-xl font-bold text-dark">
+                  <h1 className="text-xl font-bold text-foreground">
                     Galactica Network
                   </h1>
-                  <p className="text-sm text-gray-600">Reputation System</p>
+                  <p className="text-sm text-muted-foreground">Reputation System</p>
                 </div>
               </div>
             </a>
 
-            {/* Network Status Indicator */}
-            <a href="https://explorer-reticulum.galactica.com/" target="_blank">
-              <div className="inline-flex items-center space-x-2 glass-card px-4 py-2 rounded-full">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                <span className="text-sm text-dark font-medium">
-                  Network Active
-                </span>
-              </div>
-            </a>
+            <div className="flex items-center space-x-3">
+              {/* Theme Toggle */}
+              <ThemeToggle />
+              
+              {/* Network Status Indicator */}
+              <a href="https://explorer-reticulum.galactica.com/" target="_blank">
+                <div className="inline-flex items-center space-x-2 glass-card px-4 py-2 rounded-full">
+                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                  <span className="text-sm font-medium">
+                    Network Active
+                  </span>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
       </header>
@@ -89,7 +95,7 @@ export default function Leaderboard() {
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold gradient-text mb-4">
             Galactica Reputation Leaderboard
           </h1>
-          <p className="text-lg sm:text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
             Track the most active and trusted members of the Galactica Network
             ecosystem
           </p>
@@ -98,7 +104,7 @@ export default function Leaderboard() {
           <a href="https://app.galactica.com/" target="_blank">
             {" "}
             <div className="mb-8">
-              <Button className="glass-card px-8 py-6 text-md rounded-full font-bold text-dark hover:scale-105 transition-all duration-300 border-primary inline-flex items-center space-x-2 bg-transparent hover:bg-transparent">
+              <Button className="glass-card px-8 py-6 text-md rounded-full font-bold text-foreground hover:scale-105 transition-all duration-300 border-primary inline-flex items-center space-x-2 bg-transparent hover:bg-transparent">
                 <span className="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
                 <span>Start building your reputation</span>
                 <span className="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
@@ -127,26 +133,26 @@ export default function Leaderboard() {
       />
 
       {/* Footer */}
-      <footer className="relative z-10 px-4 sm:px-6 lg:px-8 py-12 border-t border-gray-100">
+      <footer className="relative z-10 px-4 sm:px-6 lg:px-8 py-12 border-t border-border">
         <div className="max-w-7xl mx-auto">
           <Card className="glass-card rounded-2xl border-primary/20">
             <CardContent className="p-8">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
-                  <h3 className="text-lg font-semibold text-dark mb-4">
+                  <h3 className="text-lg font-semibold text-foreground mb-4">
                     About Reputation Points
                   </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
+                  <p className="text-muted-foreground text-sm leading-relaxed">
                     Reputation Points (RP) are earned through active
                     participation, quality contributions, and community
                     engagement within the Galactica Network ecosystem.
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-dark mb-4">
+                  <h3 className="text-lg font-semibold text-foreground mb-4">
                     How to Earn RP
                   </h3>
-                  <ul className="text-gray-600 text-sm space-y-2">
+                  <ul className="text-muted-foreground text-sm space-y-2">
                     <li>• Complete tasks</li>
                     <li>• Participate in competitions</li>
                     <li>• Get active on Discord</li>
@@ -154,24 +160,24 @@ export default function Leaderboard() {
                   </ul>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-dark mb-4">
+                  <h3 className="text-lg font-semibold text-foreground mb-4">
                     Network Stats
                   </h3>
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Total Users:</span>
-                      <span className="font-semibold text-dark">
+                      <span className="text-muted-foreground">Total Users:</span>
+                      <span className="font-semibold text-foreground">
                         {stats?.totalUsers || "0"}
                       </span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Active Today:</span>
-                      <span className="font-semibold text-dark">
+                      <span className="text-muted-foreground">Active Today:</span>
+                      <span className="font-semibold text-foreground">
                         {stats?.activeToday || "0"}
                       </span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-600">
+                      <span className="text-muted-foreground">
                         Total RP Distributed:
                       </span>
                       <span className="font-semibold gradient-text">
@@ -182,7 +188,7 @@ export default function Leaderboard() {
                 </div>
               </div>
 
-              <div className="mt-8 pt-8 border-t border-gray-200">
+              <div className="mt-8 pt-8 border-t border-primary-100">
                 <div className="flex flex-col sm:flex-row justify-between items-center">
                   <p className="text-sm text-gray-600 mb-4 sm:mb-0">
                     © 2025 Galactica Network. Privacy for all.

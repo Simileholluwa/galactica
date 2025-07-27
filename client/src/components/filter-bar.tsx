@@ -56,7 +56,7 @@ export default function FilterBar({
                   placeholder="Search users or wallet address..."
                   value={search}
                   onChange={(e) => onSearchChange(e.target.value)}
-                  className="pl-10 bg-white/70 backdrop-blur-sm border-gray-200/50 focus:ring-2 focus:ring-primary focus:border-transparent"
+                  className="pl-5 backdrop-blur-sm border-gray-200/50 focus:ring-2 focus:ring-primary focus:border-transparent"
                 />
               </div>
             </div>

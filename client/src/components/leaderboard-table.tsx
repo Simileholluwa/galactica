@@ -162,7 +162,7 @@ export default function LeaderboardTable({
                             {user.avatar}
                           </div>
                           <div className="ml-4">
-                            <div className="text-sm font-medium text-dark">
+                            <div className="text-sm font-medium">
                               {user.username}
                             </div>
                             <div className="text-sm text-gray-500">
@@ -223,7 +223,7 @@ export default function LeaderboardTable({
                           {user.avatar}
                         </div>
                         <div>
-                          <div className="text-sm font-medium text-dark">
+                          <div className="text-sm font-medium">
                             {user.username}
                           </div>
                           <div className="text-xs text-gray-500">
@@ -261,7 +261,7 @@ export default function LeaderboardTable({
           </div>
 
           {/* Pagination Controls */}
-          <div className="p-6 border-t border-gray-100">
+          <div className="p-6 border-t border-primary-100">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
               <div className="text-sm text-gray-600">
                 Showing {(currentPage - 1) * pageSize + 1} to{" "}
