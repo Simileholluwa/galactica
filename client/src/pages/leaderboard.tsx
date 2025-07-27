@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useState, useMemo } from "react";
 import { Search } from "lucide-react";
 import StardustBackground from "../components/stardust-background";
 import LeaderboardTable from "../components/leaderboard-table";
@@ -7,8 +6,8 @@ import FilterBar from "../components/filter-bar";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import galaxyIconPath from "@assets/Icon_White star_1753623198133.png";
-
-type FilterPeriod = "all" | "week" | "month" | "today";
+import { LEADERBOARD_DATA, NETWORK_STATS, filterUsersByPeriod, searchUsers, paginateUsers } from "../data/leaderboard-data";
+import type { FilterPeriod } from "@shared/schema";
 
 export default function Leaderboard() {
   const [filter, setFilter] = useState<FilterPeriod>("all");
@@ -16,24 +15,17 @@ export default function Leaderboard() {
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 20;
 
-  const { data: leaderboardResponse, isLoading } = useQuery({
-    queryKey: ["/api/leaderboard", filter, search, currentPage],
-    queryFn: async () => {
-      const params = new URLSearchParams();
-      if (filter !== "all") params.append("filter", filter);
-      if (search.trim()) params.append("search", search.trim());
-      params.append("page", currentPage.toString());
-      params.append("limit", pageSize.toString());
+  // Process local data instead of API calls
+  const leaderboardResponse = useMemo(() => {
+    let filteredUsers = filterUsersByPeriod(LEADERBOARD_DATA, filter);
+    filteredUsers = searchUsers(filteredUsers, search);
+    return paginateUsers(filteredUsers, currentPage, pageSize);
+  }, [filter, search, currentPage, pageSize]);
 
-      const response = await fetch(`/api/leaderboard?${params}`);
-      if (!response.ok) throw new Error("Failed to fetch leaderboard");
-      return response.json();
-    },
-  });
-
-  const leaderboardData = leaderboardResponse?.users || [];
-  const totalPages = leaderboardResponse?.totalPages || 1;
-  const total = leaderboardResponse?.total || 0;
+  const leaderboardData = leaderboardResponse.users;
+  const totalPages = leaderboardResponse.totalPages;
+  const total = leaderboardResponse.total;
+  const isLoading = false; // No loading state needed for local data
 
   // Reset to page 1 when filter or search changes
   const handleFilterChange = (newFilter: FilterPeriod) => {
@@ -46,14 +38,8 @@ export default function Leaderboard() {
     setCurrentPage(1);
   };
 
-  const { data: stats } = useQuery({
-    queryKey: ["/api/stats"],
-    queryFn: async () => {
-      const response = await fetch("/api/stats");
-      if (!response.ok) throw new Error("Failed to fetch stats");
-      return response.json();
-    },
-  });
+  // Use local stats data
+  const stats = NETWORK_STATS;
 
   return (
     <div className="min-h-screen bg-white font-sans overflow-x-hidden">

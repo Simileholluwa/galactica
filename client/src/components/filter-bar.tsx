@@ -2,8 +2,7 @@ import { Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-
-type FilterPeriod = "all" | "week" | "month" | "today";
+import type { FilterPeriod } from "@shared/schema";
 
 interface FilterBarProps {
   filter: FilterPeriod;
