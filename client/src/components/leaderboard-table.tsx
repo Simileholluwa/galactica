@@ -115,27 +115,27 @@ export default function LeaderboardTable({
         <Card className="glass-card rounded-2xl overflow-hidden border-primary/20">
           {/* Desktop Table View */}
           <div className="hidden lg:block overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
+            <table className="min-w-full divide-y divide-primary-100">
               <thead className="bg-gradient-to-r from-primary/10 to-accent/10">
                 <tr>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-dark uppercase tracking-wider">
+                  <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider">
                     Rank
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-dark uppercase tracking-wider">
+                  <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider">
                     User
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-dark uppercase tracking-wider">
+                  <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider">
                     Wallet Address
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-dark uppercase tracking-wider">
+                  <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider">
                     Reputation Points
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-dark uppercase tracking-wider">
+                  <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider">
                     24h Change
                   </th>
                 </tr>
               </thead>
-              <tbody className="bg-white/80 divide-y divide-gray-100/50">
+              <tbody className="divide-y divide-primary-100">
                 {data.map((user, index) => {
                   const rank = (currentPage - 1) * pageSize + index + 1;
                   const change = formatChange(user.dailyChange);
