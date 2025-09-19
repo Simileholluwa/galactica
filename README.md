@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a full-stack web application featuring a space-themed leaderboard system built with React, Express, and PostgreSQL. The application displays user rankings with reputation points, levels, and daily changes in an elegant, interactive interface with animated stardust backgrounds.
+This is a full-stack web application featuring a space-themed leaderboard system built with React, Express, and PostgreSQL. The application displays user rankings with reputation points, levels, and daily changes in an elegant, interactive interface with animated stardust backgrounds. 90% developed by AI for the Galactica Cypher Uni Hackathon (https://x.com/GalacticaNet/status/1963275922808635436). Live link here: https://galacticadev.netlify.app/
 
 ## User Preferences
 
